@@ -1,5 +1,5 @@
 # Learning
 
-## [TypeScript](./TypeScript/README.md)
+## [TypeScript](./TypeScript/)
 
-## [Python](./Python/README.md)
+## [Python](./Python/)
