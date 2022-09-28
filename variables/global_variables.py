@@ -26,10 +26,11 @@ myfunc()
 print("Python is " + y)
 
 # To change the value of a global variable inside a function, refer to the variable by using the global keyword:
-v = "awesome"
+v = "great"
 
 def vfunc():
   global v
+  print("Python is " + v)
   v = "changed"
 
 vfunc()
