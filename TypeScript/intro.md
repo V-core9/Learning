@@ -92,6 +92,8 @@ TypeScript has a specific syntax for typing arrays.
     names.push("Dylan"); // no error
     // names.push(3); // Error: Argument of type 'number' is not assignable to parameter of type 'string'.
 
+> Run it: **npx ts-node TypeScript/Arrays/intro.ts**
+
 ### Readonly
 
 The readonly keyword can prevent arrays from being changed.
@@ -99,6 +101,8 @@ The readonly keyword can prevent arrays from being changed.
     const names: readonly string[] = ["Dylan"];
     names.push("Jack"); // Error: Property 'push' does not exist on type 'readonly string[]'.
     // try removing the readonly modifier and see if it works?
+
+> Run it: **npx ts-node TypeScript/Arrays/Readonly.ts**
 
 ### Type Inference
 
@@ -109,6 +113,8 @@ TypeScript can infer the type of an array if it has values.
     // comment line below out to see the successful assignment
     numbers.push("2"); // Error: Argument of type 'string' is not assignable to parameter of type 'number'.
     let head: number = numbers[0]; // no error
+
+> Run it: **npx ts-node TypeScript/Arrays/Inference.ts**
 
 ## TypeScript Tuples
 
@@ -134,6 +140,8 @@ As you can see we have a number, boolean and a string. But what happens if we tr
     // initialized incorrectly which throws an error
     ourTuple = [false, 'Coding God was mistaken', 5];
 
+> Run it: **npx ts-node TypeScript/Tuple/intro.ts**
+
 > Even though we have a boolean, string, and number the order matters in our tuple and will throw an error.
 
 ### Readonly Tuple
@@ -157,6 +165,8 @@ You see the new valueTuples only have strongly defined types for the initial val
     // throws error as it is readonly.
     ourReadonlyTuple.push('Coding God took a day off');
 
+> Run it: **npx ts-node TypeScript/Tuple/Readonly.ts**
+
 >If you have ever used React before you have worked with tuples more than likely.
 >
 > **useState** returns a tuple of the value and a setter function.
@@ -164,3 +174,70 @@ You see the new valueTuples only have strongly defined types for the initial val
 > **const [firstName, setFirstName] = useState('Dylan')** is a common example.
 >
 >Because of the structure we know our first value in our list will be a certain value type in this case a string and the second value a function.
+
+### Named Tuples
+
+**Named tuples** allow us to provide context for our values at each index.
+
+    const graph: [x: number, y: number] = [55.2, 41.3];
+
+> **Named tuples** provide more context for what our index values represent.
+
+> Run it: **npx ts-node TypeScript/Tuple/Named.ts**
+
+### Destructuring Tuples
+
+Since tuples are arrays we can also destructure them.
+
+    const graph: [number, number] = [55.2, 41.3];
+    const [x, y] = graph;
+
+> Run it: **npx ts-node TypeScript/Tuple/Destructuring.ts**
+
+## TypeScript Object Types
+
+TypeScript has a specific syntax for typing objects.
+
+    const car: { type: string, model: string, year: number } = {
+        type: "Toyota",
+        model: "Corolla",
+        year: 2009
+    };
+
+> Run it: **npx ts-node TypeScript/Object/intro.ts**
+
+> Object types like this can also be written separately, and even be reused, look at interfaces for more details.
+
+### Type Inference
+
+TypeScript can infer the types of properties based on their values.
+
+    const car = {
+        type: "Toyota",
+    };
+    car.type = "Ford"; // no error
+    car.type = 2; // Error: Type 'number' is not assignable to type 'string'.
+
+> Run it: **npx ts-node TypeScript/Object/intro_Inference.ts**
+
+### Optional Properties
+
+Optional properties are properties that don't have to be defined in the object definition.
+
+#### Example without an optional property
+
+    const car: { type: string, mileage: number } = { // Error: Property 'mileage' is missing in type '{ type: string; }' but required in type '{ type: string; mileage: number; }'.
+        type: "Toyota",
+    };
+    car.mileage = 2000;
+
+> Run it: **npx ts-node TypeScript/Object/without_optional.ts**
+
+#### Example with an optional property
+
+    const car: { type: string, mileage?: number } = { // no error
+        type: "Toyota"
+    };
+    car.mileage = 2000;
+
+> Run it: **npx ts-node TypeScript/Object/with_optional.ts**
